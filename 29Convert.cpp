@@ -60,6 +60,20 @@ public:
         }
 		return root;
 	}
+	
+    //方法二 中序遍历  注意参数pre是指针引用
+	void ConvertImp(TreeNode* root, TreeNode*& pre){
+		if(root == NULL){
+			return ;
+		}
+		ConvertImp(root->left, pre);
+		root->left = pre;
+		if(pre != NULL)
+			pre->right = root;
+		pre=root;
+		ConvertImp(root->right, pre);
+	}
+	
     TreeNode* Convert(TreeNode* pRootOfTree)
     {
         TreeNode* tmp = conv(pRootOfTree);
