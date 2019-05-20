@@ -70,22 +70,23 @@ using namespace std;
 		if(str_sz <= 0 || rows<=0 || cols<=0){
 			return false;
 		}
-
+		//isVisited 
+		vector< vector<int> > isVisited;
+		for(int k =0 ; k <rows; k++){
+			vector<int> c(cols);
+			isVisited.push_back(c);
+		}
 		for(int i = 0; i < rows; i ++){
 			for(int j = 0; j < cols; j ++){
 				if(matrix[i*cols + j] == str[0]){
-					//isVisited 
-					vector< vector<int> > isVisited;
-					for(int k =0 ; k <rows; k++){
-						vector<int> c(cols);
-						isVisited.push_back(c);
-					}
+					
                     std::cout << "start:" << i << ", end:"<< j <<"str_sz:"<< str_sz << std::endl;
                     isVisited[i][j] = 1;
                     bool res = hasPathImp(matrix, rows, cols, str, str_sz, i, j, isVisited, 0);
 					if(res){
 						return true;
 					}
+		 	isVisited[i][j] = 1;
 				}
 			}
 		}
